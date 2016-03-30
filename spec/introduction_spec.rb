@@ -1,4 +1,5 @@
-require "spec_helper"
+require_relative "spec_helper"
+require_relative "../lib/introduction.rb"
 
 describe "#introduction" do 
   it "takes in an argument of a name and puts out a phrase with that name using string interpolation" do 
