@@ -1,9 +1,9 @@
-# Method Arguments Lab
+# Method Parameters Lab
 
 ## Objectives
 
-1. Define a method that takes in an argument and uses that argument in the method body. 
-2. Define a method that takes in two arguments and uses both arguments in the method body. 
+1. Define a method that takes in a parameter and uses that parameter in the method body. 
+2. Define a method that takes in two parameters and uses both parameters in the method body. 
 
 ## Instructions
 
@@ -11,7 +11,7 @@ You'll be coding your methods in `lib/introduction.rb`.
 
 ### The `#introduction` Method
 
-Run the test suite to get started. To do that, run `learn` or `learn test` in your terminal. Let's take a look at the first error:
+Run the test suite to get started. To do that, run `rspec` in your terminal. Let's take a look at the first error:
 
 ```bash
 Failures:
@@ -96,9 +96,38 @@ Now the important part of our error message is here:
 expected block to output "Hi, my name is Josh.\n" to stdout, but output nothing
 ```
 
-Our test is expecting our method to `puts` out the exact phrase, using the value of the `name` argument that the method is called with. 
+Behind the scenes, the test is calling this method with the argument `"Josh"` and expecting the output to be`"Hi, my name is Josh."`
 
-Let's fix that:
+At this point, you should be thinking "Oh, I need to use the parameter in the body of the method using string interpolation."  **BUT**, let's imagine you tried to fool the test by simply hard-coding this method to always greet Josh (no matter what argument was used). 
+
+```ruby
+# lib/introduction.rb
+
+def introduction(name)
+  puts "Hi, my name is Josh."
+end
+```
+
+Just when you think you fooled `rspec`, it comes back with another test case:
+
+```bash
+Failures:
+
+  1) #introduction takes in an argument of a name and puts out a phrase with that name using string interpolation
+     Failure/Error: expect{introduction("Jill")}.to output("Hi, my name is Jill.\n").to_stdout
+     
+       expected block to output "Hi, my name is Jill.\n" to stdout, but output "Hi, my name is Josh.\n"
+       Diff:
+       @@ -1,2 +1,2 @@
+       -Hi, my name is Jill.
+       +Hi, my name is Josh.
+       
+     # ./spec/introduction_spec.rb:6:in `block (2 levels) in <top (required)>'
+```
+
+So, yes, your method works for the **Josh** test, but fails for the **Jill** test.  This is the art of well-written tests: covering multiple test cases.
+
+So, since our test is expecting our method to `puts` out the exact phrase, using the value of the `name` argument that the method is called with, let's fix that:
 
 ```ruby
 # lib/introduction.rb
@@ -113,8 +142,4 @@ Run the test again and we should be passing the first of our two tests. Use the 
 
 ### The `#introduction_with_language` Method
 
-Define a method, `#introduction_with_language` that takes in two arguments, `name` and `language` and outputs the phrase: `"Hi, my name is #{name} and I am learning to program in #{language}."
-
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/method-arguments-lab' title='Method Arguments Lab'>Method Arguments Lab</a> on Learn.co and start learning to code for free.</p>
-
-<p class='util--hide'>View <a href='https://learn.co/lessons/method-arguments-lab'>Methods and Arguments Lab</a> on Learn.co and start learning to code for free.</p>
+Define a method, `#introduction_with_language` that takes in two arguments, `name` and `language` and outputs the phrase: `"Hi, my name is _____ and I am learning to program in _____."`
