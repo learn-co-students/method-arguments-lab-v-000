@@ -1,5 +1,5 @@
 # Method Arguments Lab
-
+def
 ## Objectives
 
 1. Define a method that takes in an argument and uses that argument in the
